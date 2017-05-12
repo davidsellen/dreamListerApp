@@ -146,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048.8" y="789.35532233883066"/>
+            <point key="canvasLocation" x="977" y="789"/>
         </scene>
         <!--Add/Edit-->
         <scene sceneID="NdR-qI-HuY">
@@ -156,7 +156,7 @@
                         <viewControllerLayoutGuide type="top" id="X9c-nc-sJU"/>
                         <viewControllerLayoutGuide type="bottom" id="n10-ae-fUl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6nV-Fp-0b4" customClass="Item">
+                    <view key="view" contentMode="scaleToFill" id="6nV-Fp-0b4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

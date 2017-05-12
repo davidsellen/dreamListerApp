@@ -13,9 +13,9 @@ class ItemDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //if let topNav = self.navigationController?.navigationBar.topItem {
-        //    topNav.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-        //}
+        if let topNav = self.navigationController?.navigationBar.topItem {
+            topNav.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        }
     }
 
 }
