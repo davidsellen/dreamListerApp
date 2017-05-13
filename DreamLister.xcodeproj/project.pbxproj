@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E7A628B1EC504A800080D05 /* ItemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7A628A1EC504A800080D05 /* ItemDetailVC.swift */; };
 		6E7A628D1EC52E0C00080D05 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7A628C1EC52E0C00080D05 /* CustomTextField.swift */; };
+		6E999C5D1EC6378F00C602AF /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E999C5C1EC6378F00C602AF /* CoreDataUtil.swift */; };
 		6EA87CC91EC35CC100F9781F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA87CC81EC35CC100F9781F /* AppDelegate.swift */; };
 		6EA87CCB1EC35CC100F9781F /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA87CCA1EC35CC100F9781F /* MainVC.swift */; };
 		6EA87CCE1EC35CC100F9781F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA87CCC1EC35CC100F9781F /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		6E7A628A1EC504A800080D05 /* ItemDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailVC.swift; sourceTree = "<group>"; };
 		6E7A628C1EC52E0C00080D05 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		6E999C5C1EC6378F00C602AF /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		6EA87CC51EC35CC100F9781F /* DreamLister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamLister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA87CC81EC35CC100F9781F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EA87CCA1EC35CC100F9781F /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -54,6 +56,14 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		6E999C5B1EC6377600C602AF /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				6E999C5C1EC6378F00C602AF /* CoreDataUtil.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		6EA87CBC1EC35CC100F9781F = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 		6EA87CC71EC35CC100F9781F /* DreamLister */ = {
 			isa = PBXGroup;
 			children = (
+				6E999C5B1EC6377600C602AF /* Util */,
 				6E7A62891EC5039300080D05 /* Controller */,
 				6EA87CF11EC4C95000F9781F /* View */,
 				6EA87CED1EC3607800F9781F /* Model */,
@@ -181,6 +192,7 @@
 				6EA87CD11EC35CC100F9781F /* DreamLister.xcdatamodeld in Sources */,
 				6EA87CF31EC4C96A00F9781F /* MaterialView.swift in Sources */,
 				6E7A628B1EC504A800080D05 /* ItemDetailVC.swift in Sources */,
+				6E999C5D1EC6378F00C602AF /* CoreDataUtil.swift in Sources */,
 				6EA87CF51EC4CF2400F9781F /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

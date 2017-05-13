@@ -33,6 +33,9 @@
                                     <segment title="Title"/>
                                 </segments>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Trg-Vp-35V"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LJC-KT-1Nz">
                                 <rect key="frame" x="16" y="132" width="288" height="436"/>
@@ -173,6 +176,9 @@
                                     <constraint firstAttribute="height" constant="100" id="58U-d8-FaC"/>
                                     <constraint firstAttribute="width" constant="100" id="Tu8-aQ-9he"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="addImage:" destination="0Gv-mf-RbZ" eventType="touchUpInside" id="2d5-xk-SyQ"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sZl-nX-khZ" customClass="CustomTextField" customModule="DreamLister" customModuleProvider="target">
                                 <rect key="frame" x="124" y="82" width="180" height="40"/>
@@ -220,6 +226,9 @@
                                 <state key="normal" title="Save Item">
                                     <color key="titleColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveBtnPressed:" destination="0Gv-mf-RbZ" eventType="touchUpInside" id="RBg-a7-Qaz"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7x-r3-NOv">
                                 <rect key="frame" x="113" y="255" width="94" height="21"/>
@@ -260,8 +269,18 @@
                     <navigationItem key="navigationItem" title="Add/Edit" id="Ffe-AH-NGo">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="8b8-Um-tMX">
                             <color key="tintColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="deleteBtnPressed:" destination="0Gv-mf-RbZ" id="Kab-EH-nWT"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="detailField" destination="fgu-uA-ul0" id="pRx-R2-7U4"/>
+                        <outlet property="priceField" destination="JjJ-hD-jLm" id="GVN-DH-P8H"/>
+                        <outlet property="storePicker" destination="mid-MN-25h" id="YZa-SD-2IN"/>
+                        <outlet property="thumbImg" destination="359-Hk-DyQ" id="Jdp-mr-r8l"/>
+                        <outlet property="titleField" destination="sZl-nX-khZ" id="0UY-yE-yuF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOe-EX-xxB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
