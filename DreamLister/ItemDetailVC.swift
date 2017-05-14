@@ -11,14 +11,19 @@ import CoreData
 
 class ItemDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var typePicker: UIPickerView!
     @IBOutlet weak var storePicker: UIPickerView!
     @IBOutlet weak var titleField: CustomTextField!
     @IBOutlet weak var priceField: CustomTextField!
     @IBOutlet weak var detailField: CustomTextField!
     
     @IBOutlet weak var thumbImg: UIImageView!
+    @IBOutlet weak var storeBtn: UIButton!
+        @IBOutlet weak var itemTypeBtn: UIButton!
     
     var stores = [Store]()
+    var itemTypes = [ItemType]()
+    
     var itemToEdit: Item?
     var imagePicker: UIImagePickerController!
     
@@ -31,13 +36,21 @@ class ItemDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         
         storePicker.delegate = self
         storePicker.dataSource = self
+        storePicker.tag = 1
+        typePicker.delegate = self
+        typePicker.dataSource = self
+        typePicker.tag = 2
         
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
-        genTestData()
+        genStoreData()
         
         getStores()
+        
+        genItemTypeData()
+        
+        getItemTypes()
         
         if itemToEdit != nil {
             loadItemData()
@@ -57,6 +70,8 @@ class ItemDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
             
             if let store = item.toStore {
                 
+                storeBtn.setTitle(store.name, for: .normal)
+                
                 var index = 0
                 
                 repeat{
@@ -71,10 +86,75 @@ class ItemDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
                 }while(index < stores.count)
                 
             }
+            
+            if let itemType = item.toItemType {
+                itemTypeBtn.setTitle(itemType.type, for: .normal)
+                
+                var index2 = 0
+                
+                repeat {
+                    
+                    let s = itemTypes[index2]
+                    if s.type == itemType.type {
+                        typePicker.selectRow(index2, inComponent: 0, animated: false)
+                        break
+                    }
+                    
+                    index2 += 1
+                    
+                } while(index2 < itemTypes.count)
+            }
         }
     }
     
-    func genTestData() {
+    func genItemTypeData() {
+        
+        
+        if CoreDataUtil.isNotEmpty(entityName: "ItemType") {
+            return
+        }
+        
+        let car = ItemType(context: context)
+        car.type = "Car"
+        
+        let electronic = ItemType(context: context)
+        electronic.type = "Electronics"
+        
+        let computer = ItemType(context: context)
+        computer.type = "Computers"
+        
+        let hgt = ItemType(context: context)
+        hgt.type = "Home, Garden & Tools"
+        
+        let sports = ItemType(context: context)
+        sports.type = "Sports"
+        
+        let toys = ItemType(context: context)
+        toys.type = "Toys"
+        
+        let kids = ItemType(context: context)
+        kids.type = "Kids"
+        
+        let baby = ItemType(context: context)
+        baby.type = "Baby"
+        
+        let clothing = ItemType(context: context)
+        clothing.type = "Clothing"
+        
+        let shoes = ItemType(context: context)
+        shoes.type = "Shoes"
+        
+        let jewelry = ItemType(context: context)
+        jewelry.type = "Jewelry"
+        
+        let health = ItemType(context: context)
+        health.type = "Health"
+        
+        ad.saveContext()
+        
+    }
+
+    func genStoreData() {
         
         
         if CoreDataUtil.isNotEmpty(entityName: "Store") {
@@ -118,17 +198,49 @@ class ItemDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         
     }
 
+    func getItemTypes() {
+        
+        let fetchRequest : NSFetchRequest<ItemType> = ItemType.fetchRequest()
+        let sort = NSSortDescriptor(key: "type", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+        
+        do {
+            self.itemTypes = try context.fetch(fetchRequest)
+            self.typePicker.reloadAllComponents()
+        } catch let err as NSError {
+            print(err.debugDescription)
+        }
+        
+    }
+
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        let store = stores[row]
-        return store.name
+        if pickerView.tag == 1 {
+            
+            let store = stores[row]
+            return store.name
+            
+        } else {
+            
+            let itemType = itemTypes[row]
+            return itemType.type
+            
+        }
         
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return stores.count
-        
+        if pickerView.tag == 1 {
+            
+            return stores.count
+            
+        } else {
+            
+            return itemTypes.count
+            
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -139,6 +251,19 @@ class ItemDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        if pickerView.tag == 1 {
+            
+            let store = stores[row]
+            storeBtn.setTitle(store.name, for: .normal)
+            
+        } else {
+            
+            let type = itemTypes[row]
+            itemTypeBtn.setTitle(type.type, for: .normal)
+            
+        }
+        
+        pickerView.isHidden = true
         
     }
     
@@ -165,6 +290,8 @@ class ItemDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         }
         
         item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
+        
+        item.toItemType = itemTypes[typePicker.selectedRow(inComponent: 0)]
         
         item.created = NSDate()
         
@@ -199,5 +326,18 @@ class ItemDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         }
         
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func storeBtnPressed(_ sender: UIButton) {
+        
+        storePicker.isHidden = false
+        typePicker.isHidden = true
+        
+    }
+    @IBAction func itemTypeBtnPressed(_ sender: UIButton) {
+        
+        storePicker.isHidden = true
+        typePicker.isHidden = false
+        
     }
 }
